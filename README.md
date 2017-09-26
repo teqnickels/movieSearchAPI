@@ -1,37 +1,61 @@
-# movieSearchAPI
-Using Express, create a web server that exposes a Movie Search HTTP API which fetches results by scraping imdb.com.
 
 
-# Movie Search CLI
+# Movie Search HTTP API
+
+
 ## Skills
 
-- [ ] Can make HTTP requests from Node
-- [ ] Can write Asynchronous code in JavaScript and Node
-- [ ] Can extract data from HTML in Node
-- [ ] Can scrape a web page in Node
+- Can use Express to handle an HTTP `GET`
+- Can define routes in Express that follow the Restful Routing pattern
+- Can make HTTP requests from Node using the `request-promise` Node package
+- Can render json in response to an HTTP request, in Express
+- Can effectively use Promises in JavaScript
 
-## Exercise
+## Description
 
-Write a Node.js script called movie-search.js that takes a search term as the first argument. Your script should then print in the console the titles, release years, and title types of the movies in the "Title" section of the page that IMDB displays in response to a search for that term, parenthesizing the years and types as IMDB does.
+Using Express, create a web server that exposes a Movie Search HTTP API which
+fetches results by scraping `imdb.com`.
 
-## Example usage
+The api should have the following routes
+```
+request: GET /api/imdb/search/:query
+response: {"movies": [{name: "<movie-name>", year: "<year-released>"}]}
+```
 
-$ node movie-search.js "findingnemo"
-Finding Nemo (2003)
-Finding Nemo (2003) (Video Game)
-Finding Nemo (2001) (TV Episode)
-Finding Dory (2016)
-Finding Nemo Submarine Voyage (2007) (Short)
-Finding Nemo: Studio Tour of Pixar (2003) (Video)
-Finding Nemo Attraction & Stage Show (2007) (TV Episode)
-Specs
+## Specs
 
-use Node.js's http module to make a request to imdb.com
-use the cheerio library to extract contents from the HTML page.
-functions are tested with mocha and chai
-Hints
+- app uses Express to handle API requests
+- http requests to IMDB are made using [request-promise](https://github.com/request/request-promise)
+- use the [cheerio library](https://github.com/cheeriojs/cheerio) to extract contents from the HTML page.
+- response header `content-type` is `application/json`
+- any requests under the `/api/` namespace should render `JSON`
 
-IMDB search url for the example above : http://www.imdb.com/find?ref_=nv_sr_fn&q=findingnemo&s=all. Replace findingnemo with the dynamic search term.
-Resources
+## Example Request
 
-Trevor's walkthrough of a (partial) solution. (WARNING: This video contains spoilers! You may want to work on this on your own first before watching this)
+Doing a `GET` to `/api/search/findingnemo` should render something like:
+
+```json
+{
+  "movies":[
+    {"name": "Finding Nemo", "year": "2003"},
+    {"name": "Finding Nemo", "year": "2003"},
+    {"name": "Finding Nemo", "year": "2001"},
+    {"name": "Finding Dory", "year": "2016"},
+    {"name": "Finding Nemo Submarine Voyage", "year": "2007"},
+    {"name": "Finding Nemo: Studio Tour of Pixar ", "year": "2003"},
+    {"name": "Finding Nemo Attraction & Stage Show", "year": "2007"}
+  ]
+}
+```
+
+## Hints
+
+- Sample IMDB search url : `http://www.imdb.com/find?ref_=nv_sr_fn&q=findingnemo&s=all`. Replace `findingnemo` with the dynamic search term.
+
+## Stretch Goal
+
+If you've done the
+[Movie Search CLI](../Movie-Search-CLI) or
+[Movie Search CLI With Promises](../Movie-Search-CLI-With-Promises) module,
+go back and refactor one of those to use your HTTP API instead of scraping
+itself.
