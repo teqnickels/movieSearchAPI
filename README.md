@@ -24,11 +24,11 @@ response: {"movies": [{name: "<movie-name>", year: "<year-released>"}]}
 
 ## Specs
 
-- app uses Express to handle API requests
-- http requests to IMDB are made using [request-promise](https://github.com/request/request-promise)
-- use the [cheerio library](https://github.com/cheeriojs/cheerio) to extract contents from the HTML page.
-- response header `content-type` is `application/json`
-- any requests under the `/api/` namespace should render `JSON`
+- [ ] app uses Express to handle API requests
+- [ ] http requests to IMDB are made using [request-promise](https://github.com/request/request-promise)
+- [ ] use the [cheerio library](https://github.com/cheeriojs/cheerio) to extract contents from the HTML page.
+- [ ] response header `content-type` is `application/json`
+- [ ] any requests under the `/api/` namespace should render `JSON`
 
 ## Example Request
 
