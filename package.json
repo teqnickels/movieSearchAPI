@@ -4,7 +4,7 @@
   "description": "Using Express, create a web server that exposes a Movie Search HTTP API which fetches results by scraping imdb.com.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --compilers js:babel-register tests/tests.js",
     "start": "nodemon"
   },
   "repository": {
@@ -24,6 +24,7 @@
     "babel-preset-env": "^1.1.4",
     "body-parser": "^1.18.2",
     "chai": "^4.1.1",
+    "chai-http": "^3.0.0",
     "cheerio": "^1.0.0-rc.2",
     "cheerio-tableparser": "^1.0.1",
     "express": "^4.15.5",
